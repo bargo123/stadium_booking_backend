@@ -2,9 +2,10 @@ const Stad = require("../database_models/stadium_model");
 
 const getAllSatdiums = async(req, res) => {
     try {
-        const stadiums = await Stad.find().select('-features');
+        const ignoredValues = '-features -timesOfDay -days _id -createdAt -updatedAt -__v'
+        const stadiums = await Stad.find({}, { "images": { $slice: 1 } }).select(ignoredValues)
+
         res.status(200).json({ stadiums, length: stadiums.length });
-        stadiums.images = stadiums.images[0];
     } catch (error) {
         res.status(500).json(error);
     }
@@ -24,7 +25,7 @@ const createStadium = async(req, res) => {
 };
 const getStadium = async(req, res) => {
     try {
-        const stadiums = await Stad.findOne({...req.params.id });
+        const stadiums = await Stad.findOne({ createdBy: req.params.id });
         res.status(200).json({ stadiums });
     } catch (error) {
         res.status(500).json(error);

@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 
 const login = async(req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
     if (!email && !password) {
         return res.status(401).json({ error: "provide data please" });
     }
@@ -25,7 +24,6 @@ const login = async(req, res) => {
 
 };
 const regester = async(req, res) => {
-    console.log(req.body);
     const { name, email, password } = req.body;
     if (!name && !email && !password) {
         res.status(401).json({ error: "provide data please" });

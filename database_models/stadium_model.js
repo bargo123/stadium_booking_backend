@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 
 const StadiumSchema = mongoose.Schema({
-    stadName: {
+    name: {
         type: String,
         required: [true, "you should spicfy stad name"],
     },
@@ -11,14 +11,10 @@ const StadiumSchema = mongoose.Schema({
         type: String,
         required: [true, "you should spicfy stad price per hour"],
     },
-    fromTime: {
-        type: Date,
-        required: [true, "you should spicfy stad fromTime per hour"],
+    days: {
+        type: Map,
+        required: [true, "you should spicfy stad Days"],
 
-    },
-    ToTime: {
-        type: Date,
-        required: [true, "you should spicfy stad fromTime per hour"],
     },
     images: {
         type: Array,
@@ -32,9 +28,9 @@ const StadiumSchema = mongoose.Schema({
         type: Array,
         required: [true, "you should spicfy stad fromTime per hour"],
     },
-    times: {
+    timesOfDay: {
         type: Map,
-        of: Array,
+        of: Map,
         required: [true, "you should spicfy Avilable Times"],
     },
     createdBy: {
